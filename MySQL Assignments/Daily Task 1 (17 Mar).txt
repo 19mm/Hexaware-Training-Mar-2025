@@ -1,0 +1,36 @@
+insert into employee(emp_name,salary,dept_id,email)values('rk',56000,10,'rk@gmail.com');
+ 
+insert into department values(10,'sales');
+insert into department values(20,'it');
+insert into department values(30,'hr');
+insert into department values(40,'electronics');
+ 
+insert into employee(emp_name,salary,dept_Id,email)
+values
+('keerthi',76567,20,'keerthi@gmail.com'),
+('raja',45678,30,'raja@gamil.com');
+ 
+insert into employee(salary,emp_name,email,dept_id) values
+(98787,'nishanth','nishanth@gmail.com',10);
+ 
+create table employee_backup as select * From employee;
+ 
+select * From employee;
+ 
+ 
+insert into employee(salary,emp_name,email,dept_id) values
+(68787,'jhansi','jhansi@gmail.com',40);
+ 
+insert into employee(emp_name,salary,dept_id) select emp_name,salary,dept_id from employee_backup where dept_id=40;
+ 
+update employee set salary = 90000 where emp_id=8;
+ 
+update employee set salary=50000 , dept_id=40 where emp_id=5;
+ 
+update employee set salary = salary+5000 where dept_id=10;
+ 
+delete from employee where emp_id=8;
+ 
+delete from employee where dept_id=10;
+ 
+delete from employee;
