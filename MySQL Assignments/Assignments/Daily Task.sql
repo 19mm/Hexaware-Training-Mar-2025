@@ -142,5 +142,89 @@ WHERE std_id = 1;
 update payments set amt=10000 where payment_id=1;
 select * from payments;
 
+
 -- Task 3 (19 Mar 2025)
+
+-- 1
+insert into students (first_nm, last_nm, dob, email, ph_nm) values ('John','Doe','1995-08-15','john.doe@example.com','1234567890');
+select * from students;
+
+-- 2
+insert into enrollments(std_id, course_id, enrollment_date) values(11, 4, '2025-03-18');
+select * from enrollments;
+
+-- 3
+update teacher set email='new.email@gmail.com' where teacher_id=1;
+select * from teacher;
+
+-- 4
+delete from enrollments where std_id=1 and course_id=1;
+select * from enrollments;
+
+-- 5
+update courses set teacher_id=1 where course_id=5;
+select * from courses;
+
+-- 6
+DELETE FROM Enrollments WHERE std_id = 1; 
+DELETE FROM Students WHERE std_id = 1; 
+
+-- 7
+update payments set amt=10000 where payment_id=1;
+select * from payments;
+
+
+-- Task 3 (19 Mar 2025)
+
+-- 1
+select s.std_id, s.first_nm, s.last_nm, sum(p.amt) as total_payment from students s
+join payments p on s.std_id = p.std_id
+where s.std_id = 5  
+group by s.std_id, s.first_nm, s.last_nm;
+
+-- 2
+select c.course_id, c.course_nm, count(e.std_id) as student_count from courses c
+join enrollments e on c.course_id = e.course_id
+group by c.course_id, c.course_nm;
+
+-- 3
+select s.std_id, s.first_nm, s.last_nm from students s
+left join enrollments e on s.std_id = e.std_id
+where e.course_id is null;
+
+-- 4
+select s.first_nm, s.last_nm, c.course_nm from students s
+join enrollments e on s.std_id = e.std_id 
+join courses c on e.course_id = c.course_id;
+
+-- 5
+select t.first_nm, t.last_nm, c.course_nm from teacher t
+join courses c on t.teacher_id = c.teacher_id;
+
+-- 6
+select s.first_nm, s.last_nm, e.enrollment_date
+from students s
+join enrollments e on s.std_id = e.std_id
+join courses c on e.course_id = c.course_id
+where c.course_id = 4;
+
+-- 7
+select s.first_nm, s.last_nm from students s
+left join payments p on s.std_id = p.std_id
+where p.payment_id is null;
+
+-- 8
+select c.course_nm from courses c
+left join enrollments e on c.course_id = e.course_id where e.enrollment_id is null;
+
+-- 9
+select s.std_id, s.first_nm, s.last_nm, count(e.course_id) as course_count from students s
+join enrollments e on s.std_id = e.std_id
+group by s.std_id, s.first_nm, s.last_nm having count(e.course_id) > 1;
+
+-- 10
+select t.first_nm, t.last_nm from teacher t
+left join courses c on t.teacher_id = c.teacher_id where c.course_id is null;
+
+
 -- Task 4 (20 Mar 2025)
