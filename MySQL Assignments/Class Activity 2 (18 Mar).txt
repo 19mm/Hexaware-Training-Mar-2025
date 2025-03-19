@@ -21,9 +21,29 @@ select min(salary) as lowest_salary from employee;
 select max(salary) as highest_salary from employee;
  
 select dept_id,count(*) as total_employees from employee group by dept_id;
+
+select emp_no,e_name from emp where e_name like 'A%';
+
+select emp_no,e_name from emp where e_name like '_l%';
+
+select emp_no,e_name ,sal from emp where sal between 2500 and 5000; 
+
+select emp_no,e_name,sal,
+
+CASE WHEN sal<2000 then 'low salary'
+
+when sal between 2000 and 4000 then 'medium salary'
+
+else 'high salary'
+
+end as salary_category from emp;
  
-select emp_name,salary from employee order by salary desc limit 1;
+select emp_no,e_name from emp where mod(emp_no,2) <> 0;
  
-select emp_name,salary from employee where salary = (select max(salary) from employee);
+select emp_no,e_name from emp where mgr is null;
  
-select dept_id,count(*) as total_employees from employee group by dept_id having count(*) > 1;
+select emp_no,e_name from emp where e_name like '_____';
+ 
+select emp_No,e_name from emp where e_name not like '%A%';
+ 
+select emp_No,e_name from emp where e_name like 'A%'
