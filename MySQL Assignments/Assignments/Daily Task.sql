@@ -228,3 +228,77 @@ left join courses c on t.teacher_id = c.teacher_id where c.course_id is null;
 
 
 -- Task 4 (20 Mar 2025)
+
+-- 1
+select avg(student_count) as avg_students_per_course from 
+(
+    select course_id, count(std_id) as student_count
+    from enrollments
+    group by course_id
+) 
+as course_enrollment;
+
+-- 2 
+select first_nm, last_nm
+from students
+where std_id in (
+    select std_id from payments where amt = (select max(amt) from payments)
+);
+
+-- 3
+select course_nm from courses
+where course_id in (
+    select course_id from enrollments
+    group by course_id
+    having count(std_id) = (select max(student_count) from 
+		(
+            select course_id, count(std_id) as student_count from enrollments group by course_id
+        )
+        as course_counts
+    )
+);
+
+-- 4
+select first_nm, last_nm, (select sum(amt) from payments where std_id in 
+		(
+        select std_id from enrollments where course_id in 
+			(
+            select course_id from courses where teacher_id = t.teacher_id
+			)
+		)
+	) as total_payments
+from teacher t;
+
+-- 5
+select first_nm, last_nm from students where 
+	(select count(distinct course_id) from enrollments where std_id = students.std_id) = (select count(*) from courses);
+
+-- 6
+select first_nm, last_nm from teacher where teacher_id not in (select distinct teacher_id from courses where teacher_id is not null);
+ 
+-- 7
+select avg(timestampdiff(year, dob, curdate())) as avg_age from students;
+
+-- 8
+select course_nm from courses where course_id not in (select distinct course_id from enrollments);
+
+-- 9
+select first_nm, last_nm, course_nm,(select sum(amt) from payments where std_id = s.std_id) as total_payments
+from students s, courses c where c.course_id in (select course_id from enrollments where std_id = s.std_id);
+
+-- 10
+select first_nm, last_nm from students where std_id in 
+(
+    select std_id from payments
+    group by std_id
+    having count(payment_id) > 1
+);
+
+-- 11
+select first_nm, last_nm,(select sum(amt) from payments where std_id = s.std_id) as total_payments from students s;
+
+-- 12
+select course_nm, (select count(*) from enrollments where course_id = c.course_id) as student_count from courses c;
+
+-- 13
+select avg(amt) as avg_payment from payments where std_id in (select std_id from students);
