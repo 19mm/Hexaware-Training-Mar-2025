@@ -81,6 +81,7 @@ insert into payment values
 select * from payment;
 
 -- 1. Updation of daily rate for a Mercedes car to 68.
+-- Sir, there are 2 command beause i tried doing it with diffrent approaches, sorry for the inconvience.
 update vehicle set daily_Rate=68 where VehicleId=8;
 update Vehicle set Daily_Rate=68 where VehicleId=(Select VehicleId from(Select VehicleId from Vehicle where Make='Mercedes' Limit 1)as Temp);
 
@@ -96,10 +97,12 @@ alter table payment rename column Pay_Date to transactionDate;
 select * from customer where email='david@example.com';
 
 --  5. Get active leases for a specific customer.
+-- Sir, there are 2 command beause i tried doing it with diffrent approaches, also the dates in the provided PDF file where of 2023 which would not return any result, sorry for the inconvience.
 select * from lease where CustomerId=4 and End_Date >= '2023-05-10';
 select * from lease where CustomerId=4 and End_Date >= curdate();
 
 -- 6. All payments made by a customer with a specific phone number.
+-- Sir, there are 2 command beause i tried doing it with diffrent approaches, sorry for the inconvience.
 select p.* from payment p join lease l on p.LeaseId=l.LeaseId join customer c on l.CustomerId=c.CustomerId where c.ph_num='555-987-6543';
 select * from payment where LeaseId=(Select LeaseId from Lease where CustomerId=(Select CustomerId from Customer where ph_num='555-432-1098'));
 
