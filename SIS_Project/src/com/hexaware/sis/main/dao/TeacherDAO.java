@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TeacherDAO {
 
-    // Create: Adds a new teacher to the database
+    //Add a new teacher to the database
     public void addTeacher(Teacher teacher) {
         String sql = "INSERT INTO Teacher (first_nm, last_nm, email) VALUES (?, ?, ?)";
         try (Connection conn = DBConnUtil.getConnection();
@@ -36,7 +36,7 @@ public class TeacherDAO {
         }
     }
 
-    // Read: Retrieves a teacher by their ID
+    //Retrieve a teacher by their ID
     public Teacher getTeacher(int teacherId) {
         String sql = "SELECT * FROM Teacher WHERE teacher_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -60,7 +60,7 @@ public class TeacherDAO {
         }
     }
 
- // Update: Updates an existing teacher's information
+ //Update an existing teacher's information
     public void updateTeacher(Teacher teacher) {
         String sql = "UPDATE Teacher SET first_nm = ?, last_nm = ?, email = ? WHERE teacher_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -83,7 +83,7 @@ public class TeacherDAO {
     }
 
 
-    // Delete: Removes a teacher from the database
+    //Remove a teacher from the database
     public void deleteTeacher(int teacherId) {
         String sql = "DELETE FROM Teacher WHERE teacher_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -101,7 +101,7 @@ public class TeacherDAO {
         }
     }
 
-    // Retrieve All: Returns a list of all teachers
+    //Returns a list of all teachers
     public List<Teacher> getAllTeachers() {
         List<Teacher> teachers = new ArrayList<>();
         String sql = "SELECT * FROM Teacher";
