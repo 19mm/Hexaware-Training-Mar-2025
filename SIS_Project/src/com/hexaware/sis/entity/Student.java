@@ -54,7 +54,7 @@ public class Student {
     public void setEmail(String email) { this.email = email; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    // Enrollment logic
+    // Enroll Student in Course
     public void enrollInCourse(Course course, LocalDate enrollmentDate) throws DuplicateEnrollmentException {
         for (Enrollment e : enrollments) {
             if (e.getCourse().getCourseId() == course.getCourseId()) {
@@ -76,7 +76,7 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    // Payment logic
+    // Add Payment 
     public void makePayment(double amount, LocalDate paymentDate) {
         if (amount <= 0) {
             throw new PaymentValidationException("Invalid payment amount: " + amount);
