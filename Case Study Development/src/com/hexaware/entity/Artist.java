@@ -9,8 +9,10 @@ public class Artist {
     private String website;
     private String contactInformation;
 
+    //Default Constructor
     public Artist() { }
 
+    //Parameterised Constructor
     public Artist(int artistId, String name, String biography, String birthDate, String nationality, String website, String contactInformation) {
         this.artistId = artistId;
         this.name = name;
