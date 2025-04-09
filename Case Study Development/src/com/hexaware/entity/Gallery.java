@@ -8,8 +8,10 @@ public class Gallery {
     private int curator; // Reference to an Artist (curator)
     private String openingHours;
 
+    //Default Constructor
     public Gallery() { }
 
+    //Parameterised Constructor
     public Gallery(int galleryId, String name, String description, String location, int curator, String openingHours) {
         this.galleryId = galleryId;
         this.name = name;
