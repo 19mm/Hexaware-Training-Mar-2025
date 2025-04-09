@@ -13,13 +13,14 @@ import java.util.Scanner;
 
 public class MainModule {
     public static void main(String[] args) {
-        // Load connection properties from "db.properties" (place this file in your project root)
+        // loading the connection propperties file (db.properties)
         String connectionString = DBPropertyUtil.getPropertyString("C:\\Users\\Mayuresh\\OneDrive\\Desktop\\Hexaware Training\\Case Study Development\\src\\db.properties");
         Connection connection = DBConnUtil.getConnection(connectionString);
 
         IVirtualArtGallery artGalleryService = new VirtualArtGalleryServiceImpl(connection);
         Scanner scanner = new Scanner(System.in);
         int choice;
+        //Startup menu of Available option's
         do {
             System.out.println("\nVirtual Art Gallery Menu:");
             System.out.println("1. Add Artwork");
