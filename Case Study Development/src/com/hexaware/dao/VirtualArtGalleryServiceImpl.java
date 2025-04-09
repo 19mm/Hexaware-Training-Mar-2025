@@ -18,7 +18,8 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
     }
 
     // Artwork Management
-
+    
+    //Add Artwork to the Database
     @Override
     public boolean addArtwork(Artwork artwork) {
         String sql = "INSERT INTO artwork (artwork_id, title, description, creation_date, medium, image_url, artist_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -38,6 +39,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
+    //Update existing Artwork
     @Override
     public boolean updateArtwork(Artwork artwork) {
         String sql = "UPDATE artwork SET title=?, description=?, creation_date=?, medium=?, image_url=?, artist_id=? WHERE artwork_id=?";
@@ -57,6 +59,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
+    //Remove Artwork from the DB
     @Override
     public boolean removeArtwork(int artworkId) {
         String sql = "DELETE FROM artwork WHERE artwork_id=?";
@@ -73,6 +76,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
+    //Retrive Artwork by ID 
     @Override
     public Artwork getArtworkById(int artworkId) throws ArtWorkNotFoundException {
         String sql = "SELECT * FROM artwork WHERE artwork_id=?";
@@ -98,7 +102,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
-
+    //Search for specific Artwok based on title or description
     @Override
     public List<Artwork> searchArtworks(String keyword) {
         List<Artwork> artworks = new ArrayList<>();
@@ -127,6 +131,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
 
     // User Favorites
 
+    //Add Artwork to User Favourite's
     @Override
     public boolean addArtworkToFavorite(int userId, int artworkId) {
         String sql = "INSERT INTO user_favorite_artwork (user_id, artwork_id) VALUES (?, ?)";
@@ -144,6 +149,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
+    //Remove Atrwork from User Favourite's
     @Override
     public boolean removeArtworkFromFavorite(int userId, int artworkId) {
         String sql = "DELETE FROM user_favorite_artwork WHERE user_id=? AND artwork_id=?";
@@ -158,6 +164,7 @@ public class VirtualArtGalleryServiceImpl implements IVirtualArtGallery {
         }
     }
 
+    //Retrive User Faviourite Artwork
     @Override
     public List<Artwork> getUserFavoriteArtworks(int userId) {
         List<Artwork> artworks = new ArrayList<>();
