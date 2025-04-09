@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class PaymentDAO {
 
-    // Create: Adds a new payment record
+    // Add a new payment record
     public void addPayment(Payment payment) {
         String sql = "INSERT INTO Payments (std_id, amt, payment_date) VALUES (?, ?, ?)";
         try (Connection conn = DBConnUtil.getConnection();
@@ -37,7 +37,7 @@ public class PaymentDAO {
         }
     }
 
-    // Read: Retrieves all payments for a specific student
+    //Retrieve all payments for a specific student
     public List<Payment> getPaymentsByStudentId(int studentId) {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM Payments WHERE std_id = ?";
@@ -69,7 +69,7 @@ public class PaymentDAO {
         return payments;
     }
 
-    // Read: Retrieve all payment records
+    //Retrieve all payment records
     public List<Payment> getAllPayments() {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM Payments";
@@ -95,7 +95,7 @@ public class PaymentDAO {
         return payments;
     }
 
-    // Update: Modify an existing payment record
+    //Modify an existing payment record
     public void updatePayment(int paymentId, double newAmount) {
         String sql = "UPDATE Payments SET amt = ? WHERE payment_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -115,7 +115,7 @@ public class PaymentDAO {
         }
     }
 
-    // Delete: Remove a payment record
+    //Remove a payment record
     public void deletePayment(int paymentId) {
         String sql = "DELETE FROM Payments WHERE payment_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
