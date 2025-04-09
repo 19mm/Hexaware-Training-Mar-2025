@@ -9,9 +9,8 @@ import java.util.List;
 
 public class StudentDAO {
 
-    // Create: Adds a new student to the database using JDBC.
+    //Add a new student to the database.
     public void addStudent(Student student) {
-        // Check if student already exists by ID.
         if (exists(student.getStudentId())) {
             System.out.println("Student already exists with ID: " + student.getStudentId());
             return;
@@ -36,7 +35,7 @@ public class StudentDAO {
         }
     }
 
- // Add this method inside StudentDAO.java
+ // Get list of all Students
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
         String sql = "SELECT std_id, first_nm, last_nm, dob, email, ph_nm FROM Students";
@@ -59,7 +58,7 @@ public class StudentDAO {
         return studentList;
     }
 
-    // Helper method: Check if a student exists in the database.
+    //Check if a student exists.
     private boolean exists(int studentId) {
         String sql = "SELECT std_id FROM Students WHERE std_id = ?";
         try (Connection conn = com.hexaware.sis.main.util.DBConnUtil.getConnection();
@@ -73,7 +72,7 @@ public class StudentDAO {
         }
     }
 
-    // Read: Retrieves a student by their ID using JDBC.
+    //Retrieves a student by their ID.
     public Student getStudent(int studentId) {
         String sql = "SELECT std_id, first_nm, last_nm, dob, email, ph_nm FROM Students WHERE std_id = ?";
         try (Connection conn = com.hexaware.sis.main.util.DBConnUtil.getConnection();
@@ -96,7 +95,7 @@ public class StudentDAO {
         }
     }
 
-    // Update: Updates an existing student's information using JDBC.
+    //Update an existing student's information.
     public void updateStudent(Student student) {
         String sql = "UPDATE Students SET first_nm = ?, last_nm = ?, dob = ?, email = ?, ph_nm = ? WHERE std_id = ?";
         try (Connection conn = com.hexaware.sis.main.util.DBConnUtil.getConnection();
@@ -118,7 +117,7 @@ public class StudentDAO {
         }
     }
 
-    // Delete: Removes a student from the database using JDBC.
+    // Removes a student from the database.
     public void deleteStudent(int studentId) {
         String sql = "DELETE FROM Students WHERE std_id = ?";
         try (Connection conn = com.hexaware.sis.main.util.DBConnUtil.getConnection();
@@ -134,27 +133,4 @@ public class StudentDAO {
             System.out.println("Error deleting student: " + e.getMessage());
         }
     }
-
-    /*// Retrieve All: Returns a list of all students using JDBC.
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
-        String sql = "SELECT std_id, first_nm, last_nm, dob, email, ph_nm FROM Students";
-        try (Connection conn = com.hexaware.sis.main.util.DBConnUtil.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                int id = rs.getInt("std_id");
-                String firstName = rs.getString("first_nm");
-                String lastName = rs.getString("last_nm");
-                LocalDate dob = rs.getDate("dob").toLocalDate();
-                String email = rs.getString("email");
-                String phone = rs.getString("ph_nm");
-                Student student = new Student(id, firstName, lastName, dob, email, phone);
-                students.add(student);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving all students: " + e.getMessage());
-        }
-        return students;
-    }*/
 }
