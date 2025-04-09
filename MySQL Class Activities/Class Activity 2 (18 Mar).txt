@@ -1,0 +1,78 @@
+select emp_id,salary,emp_name+500 from employee;
+ 
+select emp_id,emp_name,salary from employee where salary>60000;
+ 
+select emp_id,emp_name,salary from employee order by salary desc;
+ 
+select emp_id,emp_name,salary from employee order by salary;
+ 
+select count(*) as total_employees from employee;
+ 
+select count(emp_name) as total_employees from employee;
+ 
+alter table employee modify emp_name varchar(50) null;
+ 
+select sum(salary) as total_salary from employee;
+ 
+select avg(salary) as average_salary from employee;
+ 
+select min(salary) as lowest_salary from employee;
+ 
+select max(salary) as highest_salary from employee;
+ 
+select dept_id,count(*) as total_employees from employee group by dept_id;
+ 
+select emp_name,salary from employee order by salary desc limit 1;
+ 
+select emp_name,salary from employee where salary = (select max(salary) from employee);
+ 
+select dept_id,count(*) as total_employees from employee group by dept_id having count(*) > 1;
+
+select emp_no,e_name from emp where e_name like 'A%';
+
+select emp_no,e_name from emp where e_name like '_l%';
+
+select emp_no,e_name ,sal from emp where sal between 2500 and 5000; 
+
+select emp_no,e_name,sal,
+
+CASE WHEN sal<2000 then 'low salary'
+
+when sal between 2000 and 4000 then 'medium salary'
+
+else 'high salary'
+
+end as salary_category from emp;
+ 
+select emp_no,e_name from emp where mod(emp_no,2) <> 0;
+ 
+select emp_no,e_name from emp where mgr is null;
+ 
+select emp_no,e_name from emp where e_name like '_____';
+ 
+select emp_No,e_name from emp where e_name not like '%A%';
+ 
+select emp_No,e_name from emp where e_name like 'A%'
+
+select e.e_name,d.d_name from emp e inner join dept d on e.DEPT_NO=d.DEPT_ID;
+ 
+select e1.e_name as employee,e2.e_name as manager from emp e1 left join emp e2 on 
+e1.mgr=e2.EMP_NO;
+ 
+select e.e_name,d.d_name from emp e left join dept d on e.dept_no=d.DEPT_ID
+ 
+union
+ 
+select e.e_name,d.d_name from emp e right join dept d on e.dept_no=d.DEPT_ID;
+ 
+select e1.e_name as employee from emp e1 left join emp e2 on e1.mgr = e2.emp_no where 
+e2.emp_no is null;
+ 
+select d.d_name , count(e.emp_no) as employee_count from emp e join dept d on
+e.DEPT_NO=d.DEPT_ID group by d.d_name order by employee_count desc limit 1;
+
+select e1.e_name,e1.sal,d1.d_name as dept_1, d2.d_name as dept_2 from emp e1 join 
+emp e2 on e1.sal = e2.sal and e1.DEPT_NO <> e2.DEPT_NO join
+dept d1 on e1.DEPT_NO = d1.DEPT_ID
+join dept d2 on e2.DEPT_NO = d2.DEPT_ID;
+ 
