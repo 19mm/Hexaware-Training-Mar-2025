@@ -14,8 +14,10 @@ public class User {
     // Favorite artworks represented as a list of artwork IDs.
     private List<Integer> favoriteArtworks; 
 
+    //Default Constructor
     public User() { }
 
+    //Parametrised Constructor
     public User(int userId, String username, String password, String email, String firstName, String lastName, String dateOfBirth, String profilePicture, List<Integer> favoriteArtworks) {
         this.userId = userId;
         this.username = username;
