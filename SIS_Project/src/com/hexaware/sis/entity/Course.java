@@ -6,7 +6,7 @@ import java.util.List;
 public class Course {
     private int courseId;
     private String courseName;
-    private String courseCode; // ✅ Added this field
+    private String courseCode;
     private int credits;
     private Teacher instructor;
     private List<Enrollment> enrollments;
@@ -16,7 +16,7 @@ public class Course {
         this.enrollments = new ArrayList<>();
     }
 
-    // Constructor without teacher
+    //Parameterized Constructor without teacher
     public Course(int courseId, String courseName, int credits) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -24,7 +24,7 @@ public class Course {
         this.enrollments = new ArrayList<>();
     }
 
-    // ✅ New constructor that includes courseCode
+    //Parameterized Constructor with CourseCode
     public Course(int courseId, String courseName, String courseCode, int credits) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -33,7 +33,7 @@ public class Course {
         this.enrollments = new ArrayList<>();
     }
 
-    // Constructor with teacherId
+    //Parameterized Constructor with teacherId
     public Course(int courseId, String courseName, int credits, int teacherId) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -94,7 +94,6 @@ public class Course {
         this.enrollments = enrollments;
     }
 
-    // Returns the teacher ID if instructor is assigned
     public int getTeacherId() {
         return (instructor != null) ? instructor.getTeacherId() : 0;
     }
@@ -115,7 +114,7 @@ public class Course {
     public void displayCourseInfo() {
         System.out.println("Course ID: " + courseId);
         System.out.println("Course Name: " + courseName);
-        System.out.println("Course Code: " + courseCode); // ✅ Added
+        System.out.println("Course Code: " + courseCode); 
         System.out.println("Credits: " + credits);
         if (instructor != null)
             System.out.println("Instructor: " + instructor.getFirstName() + " " + instructor.getLastName());
