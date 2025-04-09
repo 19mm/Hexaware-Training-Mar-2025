@@ -37,16 +37,16 @@ public class MainModule {
         do {
             //StartUp Menu
             System.out.println("\n=== Student Information System Menu ===");
-            System.out.println("1. Add New Student (Task 2.1 / Task 8)");
-            System.out.println("2. Enroll Student in a Course (Task 2.2 / Task 8)");
-            System.out.println("3. Update Teacher Email (Task 2.3)");
-            System.out.println("4. Delete Enrollment Record (Task 2.4)");
-            System.out.println("5. Assign Teacher to Course (Task 2.5 / Task 9)");
-            System.out.println("6. Delete Student and Their Enrollments (Task 2.6)");
-            System.out.println("7. Update Payment Amount (Task 2.7)");
-            System.out.println("8. Generate Total Payments for a Student (Task 3.1 & Task 4.11)");
-            System.out.println("9. Generate Enrollment Report (Task 11)");
-            System.out.println("10. Record Payment for a Student (Task 10)");
+            System.out.println("1. Add New Student");
+            System.out.println("2. Enroll Student in a Course");
+            System.out.println("3. Update Teacher Email");
+            System.out.println("4. Delete Enrollment Record");
+            System.out.println("5. Assign Teacher to Course");
+            System.out.println("6. Delete Student and Their Enrollments");
+            System.out.println("7. Update Payment Amount");
+            System.out.println("8. Generate Total Payments for a Student");
+            System.out.println("9. Generate Enrollment Report");
+            System.out.println("10. Record Payment for a Student");
             System.out.println("11. Show All Students");
             System.out.println("12. Exit");
             System.out.print("Enter choice: ");
