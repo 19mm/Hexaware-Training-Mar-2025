@@ -10,7 +10,7 @@ public class Teacher {
     private String email;
     private List<Course> assignedCourses;
 
-    // Default constructor (needed for DAO usage)
+    // Default constructor
     public Teacher() {
         this.assignedCourses = new ArrayList<>();
     }
