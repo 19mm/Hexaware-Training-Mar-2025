@@ -9,8 +9,10 @@ public class Artwork {
     private String imageURL;
     private int artistId; // Foreign key to Artist
 
+    //Default Constructor
     public Artwork() { }
 
+    //Parameterised Constructor
     public Artwork(int artworkId, String title, String description, String creationDate, String medium, String imageURL, int artistId) {
         this.artworkId = artworkId;
         this.title = title;
