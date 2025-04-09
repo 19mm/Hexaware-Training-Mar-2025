@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CourseDAO {
 
-    // Create: Adds a new course to the database using JDBC.
+    //Add a new course to the database.
     public void addCourse(Course course) {
         String sql = "INSERT INTO Courses (course_nm, credits, teacher_id) VALUES (?, ?, ?)";
         try (Connection conn = DBConnUtil.getConnection();
@@ -18,7 +18,6 @@ public class CourseDAO {
             pstmt.setString(1, course.getCourseName());
             pstmt.setInt(2, course.getCredits());
             
-            // Set teacher_id; if course.getTeacherId() is 0 or not set, use null.
             if(course.getTeacherId() > 0) {
                 pstmt.setInt(3, course.getTeacherId());
             } else {
@@ -27,7 +26,6 @@ public class CourseDAO {
             
             int rows = pstmt.executeUpdate();
             if (rows > 0) {
-                // Retrieve generated course_id
                 try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         int generatedId = generatedKeys.getInt(1);
@@ -43,7 +41,7 @@ public class CourseDAO {
         }
     }
     
-    // Read: Retrieves a course by its name (as a stand-in for "course code")
+    //Retrieves a course by its CourseCode / CourseId
     public Course getCourseByCode(String courseName) {
         String sql = "SELECT course_id, course_nm, credits, teacher_id FROM Courses WHERE LOWER(course_nm) = LOWER(?)";
         try (Connection conn = DBConnUtil.getConnection();
@@ -56,7 +54,6 @@ public class CourseDAO {
                     String name = rs.getString("course_nm");
                     int credits = rs.getInt("credits");
                     int teacherId = rs.getInt("teacher_id");
-                    // If teacher_id was null in DB, rs.getInt returns 0.
                     return new Course(courseId, name, credits, teacherId);
                 } else {
                     throw new CourseNotFoundException("Course not found with name: " + courseName);
@@ -67,7 +64,7 @@ public class CourseDAO {
         }
     }
     
-    // Read: Retrieves a course by its ID
+    // Retrieves a course by its ID
     public Course getCourseById(int courseId) {
         String sql = "SELECT course_id, course_nm, credits, teacher_id FROM Courses WHERE course_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -89,8 +86,7 @@ public class CourseDAO {
         }
     }
     
-    // Update: Updates an existing course's information
- // Update: Updates an existing course's information
+    // Update an existing course's information
     public void updateCourse(Course course) {
         String sql = "UPDATE Courses SET course_nm = ?, credits = ?, teacher_id = ? WHERE course_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -117,7 +113,7 @@ public class CourseDAO {
     }
 
     
-    // Delete: Removes a course from the database
+    // Removes a course from the database
     public void deleteCourse(int courseId) {
         String sql = "DELETE FROM Courses WHERE course_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -135,7 +131,7 @@ public class CourseDAO {
         }
     }
     
-    // Retrieve All: Returns a list of all courses
+    // Returns a list of all courses
     public List<Course> getAllCourses() {
         List<Course> courses = new ArrayList<>();
         String sql = "SELECT course_id, course_nm, credits, teacher_id FROM Courses";
