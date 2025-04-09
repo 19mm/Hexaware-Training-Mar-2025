@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EnrollmentDAO {
 
-    // Create: Adds a new enrollment to the DB
+    // Add a new enrollment to the DB
     public void addEnrollment(Enrollment enrollment) {
         String sql = "INSERT INTO Enrollments (std_id, course_id, enrollment_date) VALUES (?, ?, ?)";
         try (Connection conn = DBConnUtil.getConnection();
@@ -36,7 +36,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // Read: Retrieves an enrollment by its ID
+    // Retrieve an enrollment by its ID
     public Enrollment getEnrollmentById(int enrollmentId) {
         String sql = "SELECT * FROM Enrollments WHERE enrollment_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -64,8 +64,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // Read: Retrieves enrollments by course ID
- // Read: Retrieves enrollments by course ID with full student info
+    //Retrieve enrollments by course ID with full student info
     public List<Enrollment> getEnrollmentsByCourse(int courseId) {
         List<Enrollment> list = new ArrayList<>();
         String sql = "SELECT e.enrollment_id, e.enrollment_date, " +
@@ -100,7 +99,7 @@ public class EnrollmentDAO {
     }
 
 
-    // Update: Updates an existing enrollment
+    //Update an existing enrollment
     public void updateEnrollment(Enrollment enrollment) {
         String sql = "UPDATE Enrollments SET std_id = ?, course_id = ?, enrollment_date = ? WHERE enrollment_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -121,7 +120,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // Delete: Deletes an enrollment by its ID
+    //Delete an enrollment by its ID
     public void deleteEnrollment(int enrollmentId) {
         String sql = "DELETE FROM Enrollments WHERE enrollment_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -138,7 +137,7 @@ public class EnrollmentDAO {
         }
     }
 
- // Delete: Deletes all enrollments for a given student ID
+ //Delete all enrollments for a given student ID
     public void deleteEnrollmentsByStudentId(int studentId) {
         String sql = "DELETE FROM Enrollments WHERE std_id = ?";
         try (Connection conn = DBConnUtil.getConnection();
@@ -151,7 +150,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // Retrieve All: Returns all enrollments
+    // Returns all enrollments
     public List<Enrollment> getAllEnrollments() {
         List<Enrollment> list = new ArrayList<>();
         String sql = "SELECT * FROM Enrollments";
