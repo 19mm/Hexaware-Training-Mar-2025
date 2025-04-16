@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <style>
+        .error { color: red; font-size: 0.9em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <form id="myForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <div id="usernameError" class="error"></div>
+        </div>
+        <br>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <div id="emailError" class="error"></div>
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="FormValidation.js"></script>
+</body>
+</html>
