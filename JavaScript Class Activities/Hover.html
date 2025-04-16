@@ -1,0 +1,20 @@
+<html>
+<body> 
+	<h2 id="title">Hover Over Me !</h2>
+	<input type="text" id="myInput" placeholder="Press any key">
+
+<script>
+	//Mouseover Event
+	document.getElementById("title").onmouseover=function()
+	{
+		this.style.color="green";
+	};
+	//keydown event
+	document.getElementById("myInput").addEventListener("keydown",function(event)
+	{
+		console.log("key pressed:" + event.key);
+	});
+</script>
+
+</body>
+</html>

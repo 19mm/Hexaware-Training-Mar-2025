@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Javascript Popup Boxes</title>
+</head>
+<body>
+    <h2><center>Javascript Pop-up Boxes</center></h2>
+	<p>This assignment deals with working of different Pop-Up Boxes available in Javascript.</p>
+    <button onclick="showAlert()" >Show Alert</button><br><br>
+    <button onclick="showConfirm()">Show Confirm</button>
+    <p id="confirmResult"></p>
+    <button onclick="showPrompt()">Show Prompt</button>
+    <p id="promptResult"></p> 
+</body>
+
+<script>
+	function showAlert()
+	{
+	   alert("This is the Alert-Box !");
+
+	}
+
+	function showConfirm()
+	{
+		let result = confirm("This is the Confirm Box.\nDo you want to continue?");
+		
+		if(result)
+		{
+			document.getElementById("confirmResult").innerText = "User has clicked - Ok !";
+		}
+		else
+		{
+			document.getElementById("confirmResult").innerText="User has clicked - Cancelled.";
+		}
+	}
+
+	  function showPrompt()
+	  {
+		let name=prompt("Tihs is the Prompt Box\nEnter Your Name");
+		if(name != null && name !== "")
+		{
+			document.getElementById("promptResult").innerText="Hello, " + name + " !";
+		}
+		else
+		{
+			document.getElementById("promptResult").innerText="User did not enter a Name....";
+		}
+	  }
+</script>
+
+</html> 
